@@ -1,4 +1,4 @@
-# Requires Az PowerShell module 11
+# Requires Az PowerShell module 1122
 # Install-Module -Name Az -AllowClobber -Scope CurrentUser
 
 Connect-AzAccount
