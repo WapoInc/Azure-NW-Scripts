@@ -26,7 +26,7 @@
 # )
 Connect-AzAccount
 # Set-AzContext -SubscriptionId "0cfd0d2a-2b38-4c93-ba14-cf79185bc683"
-
+# 12345
 # $VPNGWName        = "ZA-East-vDC-VPN-GW"
 # $VPNGWRG          = "za-east-vdc"
 # $StgName          = "myhdstash"
