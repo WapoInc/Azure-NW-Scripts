@@ -7,7 +7,7 @@
 #          - Local network gateways referencing each other's public IP + address space
 #          - Site-to-site IPsec (IKEv2) connections (bi-directional)
 #          - WAIT until gateways provision and tunnels show Connected
-# vmr Sandbox
+# vmr Sandbox ##
 #
 # NOTE: Using a single resource group per user request (although
 #       in production, separating environments or roles can aid RBAC & lifecycle).
