@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables
-location="eastus"
-resourceGroup="rg-hybrid-network"
+location="southafricanorth"
+resourceGroup="rg3-hybrid-network"
 vnetName="vnet-hybrid"
 subnetName="subnet-gateway"
 gatewaySubnetName="GatewaySubnet"
@@ -16,7 +16,10 @@ tagEnvironment="HybridTest"
 tagOwner="Vince.Resente"
 
 # Create Resource Group
-az group create --name $resourceGroup --location $location --tags Environment=$tagEnvironment Owner=$tagOwner
+az group create \
+  --name $resourceGroup \
+  --location $location \
+  --tags Environment=$tagEnvironment Owner=$tagOwner
 
 # Create Azure VNet and Gateway Subnet
 az network vnet create \
@@ -40,12 +43,13 @@ az network vnet create \
   --subnet-name $onPremSubnetName \
   --subnet-prefix 10.2.1.0/24
 
-# Create Public IP for VPN Gateway
+# Create Public IP for VPN Gateway (must be Static for Standard SKU)
 az network public-ip create \
   --resource-group $resourceGroup \
   --name "${vpnGatewayName}-pip" \
   --sku Standard \
-  --allocation-method Dynamic
+  --allocation-method Static
+  # Optionally add: --zone 1 2 3 (if region supports zone-redundant IPs)
 
 # Create VPN Gateway
 az network vnet-gateway create \
@@ -75,6 +79,11 @@ az network vpn-connection create \
   --shared-key $sharedKey \
   --enable-bgp false
 
-# Tagging resources
-az resource tag --tags Environment=$tagEnvironment Owner=$tagOwner --ids \
-  $(az resource show --resource-group $resourceGroup --name $vpnGatewayName --resource-type "Microsoft.Network/virtualNetworkGateways" --query id -o tsv)
+# Tagging VPN Gateway explicitly
+az resource tag \
+  --tags Environment=$tagEnvironment Owner=$tagOwner \
+  --ids $(az resource show \
+    --resource-group $resourceGroup \
+    --name $vpnGatewayName \
+    --resource-type "Microsoft.Network/virtualNetworkGateways" \
+    --query id -o tsv)
