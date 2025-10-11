@@ -1,7 +1,7 @@
 # Instructors :
 # Vince Resente
 # Warren du Toit
-#
+####
 # Final version used in the workshop
 # Requires Az PowerShell module
 # Install-Module -Name Az -AllowClobber -Scope CurrentUser
