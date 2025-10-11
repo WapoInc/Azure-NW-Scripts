@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#vmr
 # Variables
 location="southafricanorth"
 resourceGroup="rg3-hybrid-network"
