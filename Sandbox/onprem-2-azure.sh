@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# #####--------------------------------------------------------------------------------
+# #####-change back to AES from 3DES-------------------------------------------------------------------------------
 # Script: setup-hybrid-network.sh
 # Purpose: Create a simulated hybrid network in Azure (single RG version):
 #          - "Hub" virtual network with VPN gateway
